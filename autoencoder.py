@@ -97,7 +97,7 @@ def make_model(windowed_frames, encoding_dim=4):
     x2 = Dense(16, activation='selu')(x2)
     x = keras.layers.concatenate([x, x2])
     # Bottleneck here!
-    x = Dense(encoding_dim, name='bottleneck', activation='selu')(x)
+    x = Dense(encoding_dim, name='bottleneck', activation='tanh')(x)
     # Start scaling back up
     # No frame stack for output
     pre_flat_shape[0] = 1
