@@ -25,14 +25,3 @@ def set_global_seeds(i):
         tf.set_random_seed(i)
     np.random.seed(i)
     random.seed(i)
-
-def read_tensorboard(path_to_events_file, tag):
-    """This example supposes that the events file contains summaries with a
-    summary value tag 'loss'.  These could have been added by calling
-    `add_summary()`, passing the output of a scalar summary op created with
-    with: `tf.scalar_summary(['loss'], loss_tensor)`.
-    """
-    for e in tf.train.summary_iterator(path_to_events_file):
-        for v in e.summary.value:
-            if v.tag == tag:
-                yield v.simple_value
