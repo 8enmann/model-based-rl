@@ -51,7 +51,7 @@ class EncodedImaginationWrapper(gym.ObservationWrapper):
     def __init__(self, env, model_file, num_threads):
         """Buffer observations and stack across channels (last axis)."""
         gym.Wrapper.__init__(self, env)
-        KTF.set_session(get_session())
+        KTF.set_session(get_session(num_threads))
         self.model = load_model(model_file)
 
         self.encoder_model = Model(self.model.input, self.model.get_layer('bottleneck').output, name='encoder')
