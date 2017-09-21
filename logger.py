@@ -8,7 +8,7 @@ import datetime
 import tempfile
 
 
-LOG_OUTPUT_FORMATS = ['stdout', 'log', 'json', 'tensorboard']
+LOG_OUTPUT_FORMATS = ['log', 'json', 'tensorboard'] # 'stdout', 
 TIMESTAMP =  datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
 
 DEBUG = 10
@@ -276,7 +276,7 @@ def configure(dir=None, format_strs=None):
         format_strs = LOG_OUTPUT_FORMATS
     output_formats = [make_output_format(f, dir) for f in format_strs]
     Logger.CURRENT = Logger(dir=dir, output_formats=output_formats)
-    log('Logging to %s'%dir)
+    log('Logging to %s' % dir)
 
 if os.getenv('OPENAI_LOGDIR'): 
     # if OPENAI_LOGDIR is set, configure the logger on import
