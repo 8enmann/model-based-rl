@@ -47,11 +47,12 @@ class CnnPolicy(object):
         nact = ac_space.n
         X = tf.placeholder(tf.uint8, ob_shape) #obs
         with tf.variable_scope("model", reuse=reuse):
-            x = Conv2D(filters=32, kernel_size=8, strides=4, activation='relu', name='c1')(tf.cast(X, tf.float32)/255.)
+            x = Conv2D(filters=64, kernel_size=8, strides=4, activation='relu', name='c1')(tf.cast(X, tf.float32)/255.)
             x = Conv2D(64, kernel_size=4, strides=2, activation='relu', name='c2')(x)
-            x = Conv2D(64, kernel_size=3, strides=1, activation='relu', name='c3')(x)
+            x = Conv2D(64, kernel_size=3, strides=2, activation='relu', name='c3')(x)
+            x = Conv2D(64, kernel_size=1, strides=1, activation='relu', name='c4')(x)
             x = Flatten()(x)
-            h5 = Dense(512, activation='relu', name='fc1')(x)
+            h5 = Dense(64, activation='relu', name='fc1')(x)
             pi = Dense(nact, name='pi')(h5)
             vf = Dense(1, name='v')(h5)
 
